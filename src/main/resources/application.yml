@@ -1,0 +1,40 @@
+
+spring:
+  shardingsphere:
+    datasource:
+      names: master,slave
+      #master database
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/master?serverTimezone=CTT&characterEncoding=utf-8
+        username: root
+        password: root
+      #slaver database
+      slave:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/slave?serverTimezone=CTT&characterEncoding=utf-8
+        username: root
+        password: root
+
+#∂¡–¥∑÷¿Î
+    masterslave:
+      load-balance-algorithm-type: round_robin
+      name: ms
+      master-data-source-name: master
+      slave-data-source-names: slave
+
+    #¥Ú”°sql
+    props:
+      sql:
+        show: true
+
+server:
+  port: 8090
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
