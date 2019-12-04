@@ -18,14 +18,14 @@ spring:
         username: root
         password: root
 
-#∂¡–¥∑÷¿Î
+
     masterslave:
       load-balance-algorithm-type: round_robin
       name: ms
       master-data-source-name: master
       slave-data-source-names: slave
 
-    #¥Ú”°sql
+#    show sql
     props:
       sql:
         show: true
